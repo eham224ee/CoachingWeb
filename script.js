@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     form.addEventListener('submit', function(e){
         e.preventDefault();
         
-        // --- 1. Client-Side Validation (Preserved) ---
+        // --- 1. Client-Side Validation ---
         const name = document.getElementById('name').value.trim();
         // NOTE: The ID is 'exam', but the NAME attribute in HTML is 'class'
         const exam = document.getElementById('exam').value.trim(); 
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     });
 
-    // --- The showMessage function is left unchanged ---
+    // --- Message Notification Function ---
     function showMessage(text, success=false){
         let el = document.querySelector('.toast');
         if(!el){
