@@ -1,254 +1,277 @@
+/* FULL PREMIUM STYLESHEET 
+  Includes: Animations, Shadows, Hover Effects, and Responsive Design 
+*/
+
 :root {
     --bg: #ffffff;
     --muted: #5c6370;
-    --accent: #008080; /* Teal/Cyan */
-    --black: #1a1a1a; /* Softer black */
-    --card: #e8f9f9; /* Light desaturated Teal/Cyan for contrast */
+    --accent: #008080; /* Professional Teal */
+    --accent-light: #e8f9f9;
+    --black: #1a1a1a;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --input-bg: #fdfdfd;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* 1. Reset & Base Styles */
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    margin: 0; /* Ensures no default browser margin on the body */
-    background: var(--bg);
-    color: var(--black)
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--black);
+    overflow-x: hidden;
 }
 
+/* 2. Layout & Container */
 .container {
     max-width: 900px;
-    margin: 0 auto; /* Removed top margin */
-    padding: 0 20px 20px 20px; /* Removed top padding, kept side and bottom */
-}
-
-/* visually hidden utility for accessibility */
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
-
-.hero {
-    /* HEADER AS FULL NAV: Dark background and structure */
-    background: var(--black);
-    padding: 25px 20px 20px;
-    /* Negative margin pulls the header out to span the full viewport width */
-    margin: 0 -20px 25px; 
-    color: white; 
-    text-align: center;
-    border-radius: 0 0 12px 12px; /* FINAL CHANGE: Rounds the bottom corners */
-}
-
-.hero-inner {
-    max-width: 900px;
     margin: 0 auto;
+    padding: 0 20px 60px 20px;
+}
+
+/* 3. Hero Header (Full Width & Dynamic) */
+.hero {
+    background: var(--black);
+    background-image: radial-gradient(circle at 20% 30%, #2c2c2c 0%, #1a1a1a 100%);
+    padding: 70px 20px 80px;
+    margin: 0 -20px 40px; 
+    color: white;
+    text-align: center;
+    border-radius: 0 0 40px 40px;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* Decorative background element */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g fill="%23ffffff" fill-opacity="0.03" fill-rule="evenodd"><circle cx="3" cy="3" r="3"/></g></svg>');
+    pointer-events: none;
 }
 
 .name {
-    /* INVERSED TEXT STYLE: Solid white against black header */
-    font-size: 48px; 
+    font-size: clamp(32px, 8vw, 54px);
     margin: 0;
     font-weight: 800;
-    letter-spacing: 2px;
-    color: white; 
-    -webkit-text-stroke: none;
-    text-stroke: none;
-    line-height: 1; 
+    letter-spacing: -1px;
+    line-height: 1.1;
+    animation: fadeInDown 0.8s ease;
 }
 
 .subtitle {
-    /* INVERSED TEXT STYLE: Accent color against black header */
-    color: var(--accent); 
+    color: var(--accent);
     font-weight: 700;
-    font-size: 20px; 
-    margin: 6px 0 10px; 
-    text-transform: uppercase; 
-    letter-spacing: 3px;
+    font-size: clamp(16px, 4vw, 22px);
+    margin: 12px 0 15px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    animation: fadeInUp 0.8s ease 0.2s backwards;
 }
 
 .location {
-    /* High contrast text on dark background */
-    color: #e0e0e0; 
-    font-size: 14px;
-    margin-bottom: 16px;
-    margin-top: 10px;
+    color: #a0a0a0;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease 0.4s backwards;
 }
 
+/* 4. Buttons & Interactions */
 .cta-row {
     display: flex;
     gap: 16px;
     justify-content: center;
-    margin-bottom: 18px;
-    margin-top: 25px; 
+    animation: fadeInUp 0.8s ease 0.5s backwards;
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center; /* Ensures button text/icon is centered */
-    gap: 10px;
-    padding: 12px 18px;
-    border-radius: 10px;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 28px;
+    border-radius: 14px;
     text-decoration: none;
-    color: inherit;
-    font-weight: 600;
-    transition: all 0.2s ease-in-out; 
+    font-weight: 700;
+    font-size: 16px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
 
 .btn-black {
-    /* Inversed look for contrast on the dark header */
     background: white;
     color: var(--black);
-    border: 3px solid white;
-    background-image: none;
-}
-
-.btn-black:hover {
-    background: #f0f0f0; 
-    color: var(--black);
-    border-color: #f0f0f0;
-    background-image: none;
 }
 
 .btn-green {
-    /* Maintains accent color (Teal/Cyan) which works well on dark background */
     background: var(--accent);
     color: white;
-    border: 3px solid var(--accent);
-    background-image: none;
 }
 
-.btn-green:hover {
-    filter: brightness(0.9); 
-}
-
-.btn {
-    cursor: pointer
-}
-
+/* 5. Registration Card */
 .form-wrap {
     display: flex;
     justify-content: center;
-    padding: 18px 10px
+    perspective: 1000px;
 }
 
 .card {
-    background: var(--card); /* Light desaturated teal/cyan */
-    max-width: 700px;
+    background: var(--accent-light);
     width: 100%;
-    padding: 22px;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.1); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
+    max-width: 650px;
+    padding: 45px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 128, 128, 0.08);
+    box-shadow: var(--card-shadow);
+    animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-title {
-    margin: 0;
-    font-size: 20px;
+    margin: 0 0 30px;
+    font-size: 26px;
+    font-weight: 800;
     text-align: center;
-    font-weight: 700
+    color: var(--black);
 }
 
-.card-sub {
-    margin: 6px 0 16px;
-    text-align: center;
-    color: var(--muted)
-}
-
+/* 6. Form Styling */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 12px
+    gap: 20px;
 }
 
-.contact-form input {
-    padding: 14px 16px;
-    border-radius: 10px; 
-    border: 1px solid rgba(0, 0, 0, 0.2); 
-    font-size: 15px;
+.form-group {
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 18px 20px;
     background: white;
-    transition: all 0.2s ease-in-out; 
+    border: 2px solid transparent;
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--black);
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
-.contact-form input:focus {
+input:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.15); 
     border-color: var(--accent);
+    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.1);
+    background: #ffffff;
 }
 
-.contact-form input::placeholder {
-    color: var(--muted)
+input::placeholder {
+    color: #a0a0a0;
 }
 
 .submit-btn {
-    /* Submit button is on the light card, so it should be dark */
     background: var(--black);
     color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 6px;
-    transition: background-color 0.2s ease-in-out;
-    /* Subtle gradient for depth */
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0) 100%);
+    font-size: 18px;
+    padding: 20px;
+    margin-top: 10px;
+    width: 100%;
+    letter-spacing: 1px;
 }
 
 .submit-btn:hover {
-    background: var(--muted);
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: #333;
 }
 
-.map-wrap {
-    margin-top: 18px
-}
-
-.map-wrap iframe {
-    width: 100%;
-    height: 220px;
-    border: 0;
-    border-radius: 6px
-}
-
-@media (max-width:520px) {
-    /* Adjustments for mobile to ensure clean edges */
-    .hero {
-        margin: 0 0 25px; 
-        padding: 20px;
-        border-radius: 0 0 12px 12px; /* Ensures mobile also has the rounded corners */
-    }
-
-    .name {
-        font-size: 38px;
-    }
-    
-    .subtitle {
-        font-size: 16px;
-        letter-spacing: 2px;
-    }
-
-    .cta-row {
-        flex-direction: column;
-        gap: 10px
-    }
-
-    .btn {
-        width: 100%;
-    }
-
-    .card {
-        padding: 16px
-    }
-}
-
-/* toast message - uses the new accent color */
+/* 7. Toast Notifications */
 .toast {
     position: fixed;
+    bottom: 30px;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: 28px;
-    padding: 10px 18px;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--black);
     color: white;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 15px 30px;
+    border-radius: 50px;
     font-weight: 600;
-    transition: opacity 200ms ease-in-out;
-    opacity: 0
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 8. Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50px) rotateX(-10deg); }
+    to { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+/* 9. Accessibility & Mobile */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+@media (max-width: 600px) {
+    .container { padding: 0 15px 40px; }
+    .hero { padding: 50px 15px 60px; border-radius: 0 0 30px 30px; }
+    .cta-row { flex-direction: column; width: 100%; }
+    .btn { width: 100%; }
+    .card { padding: 30px 20px; }
+    .card-title { font-size: 22px; }
+}
+
+/* Special Focus for High Contrast */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
 }
