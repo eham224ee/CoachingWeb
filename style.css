@@ -1,45 +1,17 @@
-/* FULL PREMIUM STYLESHEET 
-  Includes: Animations, Shadows, Hover Effects, and Responsive Design 
-*/
-
 :root {
     --bg: #ffffff;
-    --muted: #5c6370;
-    --accent: #008080; /* Professional Teal */
+    --accent: #008080; 
     --accent-light: #e8f9f9;
     --black: #1a1a1a;
     --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --input-bg: #fdfdfd;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 1. Reset & Base Styles */
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: var(--black); overflow-x: hidden; }
 
-html {
-    scroll-behavior: smooth;
-}
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px 60px 20px; }
 
-body {
-    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg);
-    color: var(--black);
-    overflow-x: hidden;
-}
-
-/* 2. Layout & Container */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px 60px 20px;
-}
-
-/* 3. Hero Header (Full Width & Dynamic) */
+/* HERO */
 .hero {
     background: var(--black);
     background-image: radial-gradient(circle at 20% 30%, #2c2c2c 0%, #1a1a1a 100%);
@@ -48,230 +20,67 @@ body {
     color: white;
     text-align: center;
     border-radius: 0 0 40px 40px;
-    position: relative;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
-/* Decorative background element */
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g fill="%23ffffff" fill-opacity="0.03" fill-rule="evenodd"><circle cx="3" cy="3" r="3"/></g></svg>');
-    pointer-events: none;
-}
+.name { font-size: clamp(32px, 8vw, 54px); margin: 0; font-weight: 800; animation: fadeInDown 0.8s ease; }
+.subtitle { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 4px; margin: 12px 0; }
 
-.name {
-    font-size: clamp(32px, 8vw, 54px);
-    margin: 0;
-    font-weight: 800;
-    letter-spacing: -1px;
-    line-height: 1.1;
-    animation: fadeInDown 0.8s ease;
-}
+.cta-row { display: flex; gap: 16px; justify-content: center; margin-top: 25px; }
+.btn { padding: 16px 28px; border-radius: 14px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; display: inline-flex; align-items: center; }
+.btn-black { background: white; color: var(--black); }
+.btn-green { background: var(--accent); color: white; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
 
-.subtitle {
-    color: var(--accent);
-    font-weight: 700;
-    font-size: clamp(16px, 4vw, 22px);
-    margin: 12px 0 15px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    animation: fadeInUp 0.8s ease 0.2s backwards;
-}
-
-.location {
-    color: #a0a0a0;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 30px;
-    animation: fadeIn 1s ease 0.4s backwards;
-}
-
-/* 4. Buttons & Interactions */
-.cta-row {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    animation: fadeInUp 0.8s ease 0.5s backwards;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 16px 28px;
-    border-radius: 14px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 16px;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-
-.btn:active {
-    transform: translateY(-1px);
-}
-
-.btn-black {
-    background: white;
-    color: var(--black);
-}
-
-.btn-green {
-    background: var(--accent);
-    color: white;
-}
-
-/* 5. Registration Card */
-.form-wrap {
-    display: flex;
-    justify-content: center;
-    perspective: 1000px;
-}
-
+/* FORM CARD */
+.form-wrap { display: flex; justify-content: center; }
 .card {
     background: var(--accent-light);
     width: 100%;
     max-width: 650px;
     padding: 45px;
     border-radius: 30px;
-    border: 1px solid rgba(0, 128, 128, 0.08);
     box-shadow: var(--card-shadow);
     animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.card-title { text-align: center; margin-bottom: 30px; font-weight: 800; font-size: 26px; }
 
-.card-title {
-    margin: 0 0 30px;
-    font-size: 26px;
-    font-weight: 800;
-    text-align: center;
-    color: var(--black);
-}
+#contactForm { display: flex; flex-direction: column; gap: 20px; }
+input { width: 100%; padding: 18px; border-radius: 15px; border: 2px solid transparent; font-size: 16px; transition: 0.3s; }
+input:focus { outline: none; border-color: var(--accent); background: white; }
+.submit-btn { background: var(--black); color: white; justify-content: center; }
 
-/* 6. Form Styling */
-.contact-form {
+/* MAP ALIGNMENT */
+.map-wrap {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    animation: slideInUp 0.8s ease 0.2s backwards;
 }
 
-.form-group {
-    position: relative;
-}
-
-input {
+.map-container {
     width: 100%;
-    padding: 18px 20px;
-    background: white;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    font-size: 16px;
-    font-family: inherit;
-    color: var(--black);
-    transition: var(--transition);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-}
-
-input:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.1);
-    background: #ffffff;
-}
-
-input::placeholder {
-    color: #a0a0a0;
-}
-
-.submit-btn {
-    background: var(--black);
-    color: white;
-    font-size: 18px;
-    padding: 20px;
-    margin-top: 10px;
-    width: 100%;
-    letter-spacing: 1px;
-}
-
-.submit-btn:hover {
-    background: #333;
-}
-
-/* 7. Toast Notifications */
-.toast {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--black);
-    color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.toast.show {
-    transform: translateX(-50%) translateY(0);
-}
-
-/* 8. Animations */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideInUp {
-    from { opacity: 0; transform: translateY(50px) rotateX(-10deg); }
-    to { opacity: 1; transform: translateY(0) rotateX(0); }
-}
-
-/* 9. Accessibility & Mobile */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
+    max-width: 650px; /* Same width as form */
+    border-radius: 30px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(0, 128, 128, 0.1);
 }
+
+.map-container iframe { display: block; border: none; }
+
+/* TOAST */
+.toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--black); color: white; padding: 15px 30px; border-radius: 50px;
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 600px) {
-    .container { padding: 0 15px 40px; }
-    .hero { padding: 50px 15px 60px; border-radius: 0 0 30px 30px; }
-    .cta-row { flex-direction: column; width: 100%; }
-    .btn { width: 100%; }
-    .card { padding: 30px 20px; }
-    .card-title { font-size: 22px; }
-}
-
-/* Special Focus for High Contrast */
-@media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
+    .cta-row { flex-direction: column; }
+    .card, .map-container { border-radius: 20px; padding: 30px 20px; }
 }
