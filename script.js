@@ -1,94 +1,107 @@
-document.addEventListener('DOMContentLoaded', function(){
+/**
+ * FAHMID SHEHAB COACHING - Professional Lead Capture Script
+ * Features: Ajax Submission, Toast Notifications, and Button State Handling
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
-    const submitButton = form.querySelector('.submit-btn'); // Get the button reference
+    const submitBtn = form.querySelector('.submit-btn');
 
-    form.addEventListener('submit', function(e){
+    // 1. FORM SUBMISSION HANDLER
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // --- 1. Client-Side Validation ---
-        const name = document.getElementById('name').value.trim();
-        // NOTE: The ID is 'exam', but the NAME attribute in HTML is 'class'
-        const exam = document.getElementById('exam').value.trim(); 
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
 
-        if(!name || !exam || !phone){
-            showMessage('Please fill all required fields.', false);
-            return;
-        }
-        const phoneDigits = phone.replace(/[^0-9]/g, '');
-        if(phoneDigits.length < 8){
-            showMessage('Please enter a valid phone number (at least 8 digits).', false);
-            return;
-        }
-        if(email){
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if(!emailPattern.test(email)){
-                showMessage('Please enter a valid email address.', false);
-                return;
-            }
-        }
-        // --- End Validation ---
+        // Start Loading State
+        setLoading(true);
 
-        
-        // --- 2. Start Submission Process ---
-        const originalButtonText = submitButton.innerText;
-        submitButton.innerText = 'Sending...';
-        submitButton.disabled = true;
+        // Prepare Data
+        const formData = new FormData(form);
 
-        const formURL = form.action; // Retrieves the Apps Script URL from the HTML action attribute
-        const formData = new FormData(form); // Gathers data using the input NAME attributes (name, class, mail, phn)
-
-        fetch(formURL, {
+        // 2. SEND DATA TO GOOGLE APPS SCRIPT
+        fetch(form.action, {
             method: 'POST',
-            body: formData 
+            body: formData
         })
         .then(response => {
-            if (!response.ok) {
-                // If the HTTP status is not 200 (e.g., 404, 500), throw an error
-                throw new Error('Server response not OK: ' + response.statusText);
-            }
+            if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
         .then(data => {
-            // Check the JSON response from the Google Apps Script
             if (data.result === 'success') {
-                showMessage('Thanks! We will call you within 24 hours.', true);
-                form.reset(); 
+                // Success Scenario
+                showToast("✅ Details sent successfully!");
+                form.reset();
             } else {
-                // This means the fetch succeeded, but the script failed internally
-                showMessage('Submission error: Please check your Apps Script for errors.', false);
+                // Script error scenario
+                showToast("❌ Error: " + (data.message || "Submission failed"), true);
             }
         })
         .catch(error => {
-            // This catches network errors or the error thrown above
-            console.error('Submission failed:', error);
-            showMessage('Connection error: Failed to reach the server. Please try again.', false);
+            // Connection/Network error scenario
+            console.error('Error:', error);
+            showToast("❌ Connection error. Please try again.", true);
         })
         .finally(() => {
-            // 3. Restore Button State
-            submitButton.innerText = originalButtonText;
-            submitButton.disabled = false;
+            // Stop Loading State
+            setLoading(false);
         });
-
     });
 
-    // --- Message Notification Function ---
-    function showMessage(text, success=false){
-        let el = document.querySelector('.toast');
-        if(!el){
-            el = document.createElement('div');
-            el.className = 'toast';
-            document.body.appendChild(el);
+    /**
+     * Helper: Manages the visual state of the submit button
+     */
+    function setLoading(isLoading) {
+        if (isLoading) {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.7";
+            submitBtn.innerHTML = `
+                <span style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
+                        <circle cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="4" stroke-dasharray="31.4" opacity="0.3"></circle>
+                        <path d="M12 2a10 10 0 0 1 10 10" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"></path>
+                    </svg>
+                    Sending...
+                </span>
+            `;
+        } else {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.innerHTML = "Send Details";
         }
-        el.textContent = text;
-        el.style.background = success ? 'var(--accent)' : '#ef4444';
-        el.style.opacity = '0';
-        el.style.pointerEvents = 'none';
-        requestAnimationFrame(()=>{
-            el.style.opacity='1';
-            el.style.pointerEvents='auto';
-        });
-        setTimeout(()=>{ el.style.opacity = '0'; }, 2600);
+    }
+
+    /**
+     * Helper: Triggers the Premium Toast Notification (matches CSS section 7)
+     */
+    function showToast(message, isError = false) {
+        // Create toast element if it doesn't exist
+        let toast = document.querySelector('.toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast';
+            document.body.appendChild(toast);
+        }
+
+        // Set content and style
+        toast.textContent = message;
+        toast.style.background = isError ? "#e74c3c" : "#1a1a1a";
+        
+        // Trigger CSS animation (defined in your style.css as .toast.show)
+        toast.classList.add('show');
+
+        // Remove toast after 4 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 4000);
     }
 });
+
+// Adding the missing spinner animation keyframes via JS for convenience
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
