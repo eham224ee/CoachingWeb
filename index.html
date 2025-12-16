@@ -3,134 +3,55 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="Eham"
-    />
     <title>Eham Coaching Center</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./style.css" /> 
   </head>
   <body>
     <main class="container">
-      <header class="hero" role="banner">
+      <header class="hero">
         <div class="hero-inner">
           <h1 class="name">Eham Coaching Center</h1>
-          <p class="subtitle">Mathmatic , Physics</p>
-          <p class="location" aria-hidden="false">📍Mirpur , Dhaka</p>
-          <div class="cta-row" role="group" aria-label="Contact options">
-            <a
-              class="btn btn-black"
-              href="tel:+8801904264023" aria-label="Call Rahim Sir"
-              >📞 Call Now</a
-            >
-            <a
-              class="btn btn-green"
-              href="https://wa.me/8801900000000?text=I'm%20interested%20in%20your%20coaching%20center." target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Message on WhatsApp"
-              >💬 Message on WhatsApp</a
-            >
+          <p class="subtitle">Mathematics & Physics</p>
+          <p class="location">📍 Mirpur, Dhaka</p>
+          <div class="cta-row">
+            <a class="btn btn-black" href="tel:+8801904264023">📞 Call Now</a>
+            <a class="btn btn-green" href="https://wa.me/8801900000000" target="_blank">💬 Message on WhatsApp</a>
           </div>
         </div>
       </header>
 
-      <section class="form-wrap" aria-labelledby="form-heading">
+      <section class="form-wrap">
         <div class="card">
-          <header>
-            <h2 id="form-heading" class="card-title">Send Your Details</h2>
-            <p class="card-sub"></p>
-          </header>
-          <form
-            id="contactForm"
-            class="contact-form"
-            autocomplete="off"
-            aria-describedby="form-help"
-            method="POST"
-            action="https://script.google.com/macros/s/AKfycbwYICJJPrIJliXVhhqRnnwBFMSr4CV9cTKeUkxCbjyZ-JNB4rexKBvXBDgu5rfMZ-vC/exec" >
-            <p id="form-help" style="display: none">
-              We only use this information to make the callback. By sending
-              details you agree to be contacted.
-            </p>
-            <label for="name" class="visually-hidden">Your Name</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Your Name"
-              autocomplete="name"
-              required
-            />
+          <h2 class="card-title">Send Your Details</h2>
+          <form id="contactForm" method="POST" action="YOUR_APPS_SCRIPT_URL">
+            <input type="hidden" name="client_tab" value="EhamDB">
 
-            <label for="exam" class="visually-hidden">Class/Exam</label>
-            <input
-              id="exam"
-              name="class" type="text"
-              placeholder="Class/Exam (e.g., HSC 2026)"
-              required
-            />
-
-            <label for="email" class="visually-hidden">Email</label>
-            <input
-              id="email"
-              name="mail" type="email"
-              placeholder="Email (Optional)"
-              autocomplete="email"
-            />
-
-            <label for="phone" class="visually-hidden">Phone</label>
-            <input
-              id="phone"
-              name="phn" type="tel"
-              placeholder="Phone (for call)"
-              inputmode="tel"
-              autocomplete="tel"
-              required
-              pattern="[0-9 +-]{8,}"
-            />
-
-            <button
-              class="btn submit-btn"
-              type="submit"
-              aria-label="Send Details"
-            >
-              Send Details
-            </button>
+            <input id="name" name="name" type="text" placeholder="Your Name" required />
+            <input id="exam" name="class" type="text" placeholder="Class/Exam (e.g., HSC 2026)" required />
+            <input id="email" name="mail" type="email" placeholder="Email (Optional)" />
+            <input id="phone" name="phn" type="tel" placeholder="Phone (for call)" required />
+            
+            <button class="btn submit-btn" type="submit">Send Details</button>
           </form>
         </div>
       </section>
 
-      <section class="map-wrap" aria-label="Map showing location">
-        <iframe
-          title="Mirpur , Dhaka"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29201.82004082476!2d90.3416381789269!3d23.81050773955375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0c1c61277db%3A0xc7d18838730e2e59!2sMirpur%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1765880775383!5m2!1sen!2sbd"
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+      <section class="map-wrap">
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6033989341775!2d90.3644!3d23.8126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c128f10111d1%3A0x6e26715d71216e0b!2sMirpur%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1700000000000" 
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
       </section>
     </main>
 
-    <noscript>
-      <div
-        style="
-          position: fixed;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: #111;
-          color: #fff;
-          padding: 10px;
-          text-align: center;
-        "
-      >
-        This page requires JavaScript for full functionality.
-      </div>
-    </noscript>
-
+    <div id="toast" class="toast"></div>
     <script src="./script.js"></script>
   </body>
 </html>
