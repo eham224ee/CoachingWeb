@@ -168,6 +168,12 @@ body {
     transition: all 0.2s ease-in-out; 
 }
 
+.contact-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.15); 
+    border-color: var(--accent);
+}
+
 .contact-form input::placeholder {
     color: var(--muted)
 }
@@ -230,13 +236,6 @@ body {
     .card {
         padding: 16px
     }
-}
-
-/* subtle focus styles */
-.contact-form input:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.15); 
-    border-color: var(--accent);
 }
 
 /* toast message - uses the new accent color */
