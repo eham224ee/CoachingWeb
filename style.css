@@ -29,7 +29,7 @@ body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); col
 .cta-row { display: flex; gap: 16px; justify-content: center; margin-top: 25px; }
 .btn { padding: 16px 28px; border-radius: 14px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; display: inline-flex; align-items: center; }
 .btn-black { background: white; color: var(--black); }
-.btn-green { background: var(--accent); color: white; }
+.btn-green { background: #25D366; color: white; }
 .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
 
 /* FORM CARD */
